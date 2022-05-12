@@ -2,10 +2,6 @@
 
 import axios from "axios";
 
-<<<<<<< HEAD
-/* import axios from 'axios';
-=======
->>>>>>> 55e69f990249e74da6f4043241cfd579de4bd250
 export default {
 
     props: {
