@@ -1,6 +1,9 @@
 <script>
 
 import axios from "axios";
+import category from "@/components/views/Category.vue";
+
+
 
 export default {
 
@@ -9,19 +12,13 @@ export default {
             type: String,
             default: '',
         },
-        difficulty: {
-            type: String,
-            default: '',
-        },
     },
-
-//25
 
     data: () => ({
         result: null
     }),
     async created() {
-        await axios.get("https://opentdb.com/api.php?amount=1&type=multiple").then((result) => {
+        await axios.get("https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy&category=${this.category}").then((result) => {
             this.all = result.data;
             this.result = result.data.results[0].question;
             /* this.answer = result.data.results[0].correct_answer;
@@ -40,13 +37,9 @@ export default {
         <h1 v-html="result"></h1>
 
     <section class="responseBtns">
-        <button  class="Question">
-            Damaris
-            <span class="button__text"></span>
-            <span class="button--   "></span>
-        </button>
-        <button class="Question2">Dramaris</button>
-        <button class="Question 3">Mamaris</Button>
+        <button class="Question">Damaris</button>
+        <button class="Question 2">Dramaris</button>
+        <button class="Question 3">Mamaris</button>
         <button class="Question 1">Momento Damaris</button>
     </section>
 
@@ -58,7 +51,7 @@ export default {
     margin: 0.1rem;
 }
 
-h1{
+h1 {
     margin-bottom:50px;
     display: flex;
     justify-content: center;

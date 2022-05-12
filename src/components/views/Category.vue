@@ -1,14 +1,24 @@
 <script>
 
+
+
 /* props: {
-    dificulty: {
+    difficulty: {
         type: String,
         default: '',
     },
 } */
 
 export default {
-    data() {
+
+/*     props: {
+        category: {
+            type: String,
+            default: '',
+        },
+    }, */
+
+    data: () => {
         return {
             category: 'random',
             art: false,
@@ -32,9 +42,10 @@ export default {
             select === 'random' ? this.random = true : this.random = false
             
             this.category = event.target.id
-            console.log(this.category)
-            this.$router.push({ name:'Response', params:{ category: this.category, difficulty: this.difficulty } })
+            /* console.log(this.category) */
+            this.$router.push({ path:'/response', params:{ category: this.category, difficulty: this.difficulty } })
         }
+        
     }
 }
 
@@ -52,7 +63,7 @@ export default {
         </div>
 
         <div class="categoryBtns">
-            <button @click=" (event) => setCategory(event)" id="art" class="artBtn">Art & Literature</button>
+            <button @click=" (event) => setCategory(event)" id="25" class="artBtn">Art & Literature</button>
             <button @click=" (event) => setCategory(event)" id="geography" class="geographyBtn">Geography</button>
             <button @click=" (event) => setCategory(event)" id="history" class="historyBtn">History</button>
             <button @click=" (event) => setCategory(event)" id="science" class="scienceBtn">Science & Nature</button>
