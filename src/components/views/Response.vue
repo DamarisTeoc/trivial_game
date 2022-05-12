@@ -18,12 +18,12 @@ export default {
         result: null
     }),
     async created() {
-        await axios.get("https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy&category=${this.category}").then((result) => {
+        await axios.get("https://opentdb.com/api_category.php").then((result) => {
             this.all = result.data;
-            this.result = result.data.results[0].question;
-            /* this.answer = result.data.results[0].correct_answer;
-            this.incorrect_answer = result.data.results[0].incorrect_answers; */
-            console.log(result.data.results[0].question);
+/*             this.result = result.data.results[0].question;
+            this.answer = result.data.results[0].correct_answer;
+            this.incorrect_answer = result.data.results[0].incorrect_answers;
+            console.log(result.data.results[0].question); */
             console.log(result.data);
         })
     }

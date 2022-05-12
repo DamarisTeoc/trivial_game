@@ -1,5 +1,5 @@
 <script>
-
+import axios from "axios";
 
 
 /* props: {
@@ -11,16 +11,16 @@
 
 export default {
 
-/*     props: {
+    props: {
         category: {
             type: String,
             default: '',
         },
-    }, */
+    },
 
     data: () => {
         return {
-            category: 'random',
+            category: '',
             art: false,
             history: false,
             science: false,
@@ -29,21 +29,33 @@ export default {
             entertainment: false,
             random: true,
         }
-
     },
+
+        async created() {
+        await axios.get("https://opentdb.com/api_category.php").then((result) => {
+            this.categories = result.data;
+            this.oneCategory = result.data.id;
+            console.log(this.categories);
+            console.log(this.oneCategory);
+        });
+    },
+
+
+
     methods: {
-        setCategory(event, select) {
-            select === 'art' ? this.art = true : this.art = false
-            select === 'history' ? this.history = true : this.history = false
-            select === 'science' ? this.science = true : this.science = false
-            select === 'sports' ? this.sports = true : this.sports = false
-            select === 'geography' ? this.geography = true : this.geography = false
-            select === 'entertainment' ? this.entertainment = true : this.entertainment = false
-            select === 'random' ? this.random = true : this.random = false
+        setCategory(category, select) {
+            [select === 'art' ? this.art = true : this.art = false,
+            select === 'history' ? this.history = true : this.history = false,
+            select === 'science' ? this.science = true : this.science = false,
+            select === 'sports' ? this.sports = true : this.sports = false,
+            select === 'geography' ? this.geography = true : this.geography = false,
+            select === 'entertainment' ? this.entertainment = true : this.entertainment = false,
+            select === 'random' ? this.random = true : this.random = false];
             
-            this.category = event.target.id
-            /* console.log(this.category) */
+            this.category = category.id
+            console.log(this.category)
             this.$router.push({ path:'/response', params:{ category: this.category, difficulty: this.difficulty } })
+            
         }
         
     }
@@ -63,7 +75,7 @@ export default {
         </div>
 
         <div class="categoryBtns">
-            <button @click=" (event) => setCategory(event)" id="25" class="artBtn">Art & Literature</button>
+            <button @click=" (category) => setCategory(category)" id="25" class="artBtn">Art & Literature</button>
             <button @click=" (event) => setCategory(event)" id="geography" class="geographyBtn">Geography</button>
             <button @click=" (event) => setCategory(event)" id="history" class="historyBtn">History</button>
             <button @click=" (event) => setCategory(event)" id="science" class="scienceBtn">Science & Nature</button>
