@@ -37,7 +37,7 @@ export default {
             this.answers_list = [this.incorrect_answer, this.incorrect_answer1, this.incorrect_answer2];
 
             let randomAnswer = Math.floor(Math.random() * (this.answers_list.length+1));
-            
+            console.log(randomAnswer);
 
             randomAnswer = this.answers_list[randomAnswer];
 
