@@ -1,4 +1,42 @@
-<script setup>
+<script>
+
+/* props: {
+    dificulty: {
+        type: String,
+        default: '',
+    },
+} */
+
+export default {
+    data() {
+        return {
+            category: 'random',
+            art: false,
+            history: false,
+            science: false,
+            sports: false,
+            geography: false,
+            entertainment: false,
+            random: true,
+        }
+
+    },
+    methods: {
+        setCategory(event, select) {
+            select === 'art' ? this.art = true : this.art = false
+            select === 'history' ? this.history = true : this.history = false
+            select === 'science' ? this.science = true : this.science = false
+            select === 'sports' ? this.sports = true : this.sports = false
+            select === 'geography' ? this.geography = true : this.geography = false
+            select === 'entertainment' ? this.entertainment = true : this.entertainment = false
+            select === 'random' ? this.random = true : this.random = false
+            
+            this.category = event.target.id
+            console.log(this.category)
+            this.$router.push({ path:'response', params:{ category: this.category, difficulty: this.difficulty } })
+        }
+    }
+}
 
 </script>
 
@@ -14,13 +52,13 @@
         </div>
 
         <div class="categoryBtns">
-            <button @click="$router.push('response')" to="/response" class="artBtn">Art & Literature</button>
-            <button @click="$router.push('response')" class="geographyBtn">Geography</button>
-            <button @click="$router.push('response')" class="historyBtn">History</button>
-            <button @click="$router.push('response')" class="scienceBtn">Science & Nature</button>
-            <button @click="$router.push('response')" class="entertainmentBtn">Entertainment</button>
-            <button @click="$router.push('response')" class="sportsBtn">Sports & Leisure</button>
-            <button @click="$router.push('response')" class="randomBtn">Random</button>
+            <button @click=" (event) => setCategory(event)" id="art" class="artBtn">Art & Literature</button>
+            <button @click=" (event) => setCategory(event)" id="geography" class="geographyBtn">Geography</button>
+            <button @click=" (event) => setCategory(event)" id="history" class="historyBtn">History</button>
+            <button @click=" (event) => setCategory(event)" id="science" class="scienceBtn">Science & Nature</button>
+            <button @click=" (event) => setCategory(event)" id="entertainment" class="entertainmentBtn">Entertainment</button>
+            <button @click=" (event) => setCategory(event)" id="sports" class="sportsBtn">Sports & Leisure</button>
+            <button @click=" (event) => setCategory(event)" id="random" class="randomBtn">Random</button>
         </div>
 
         <div class="iconsRight">
@@ -32,17 +70,18 @@
     </section>
 </template>
 
-<style scoped>
+<style>
 
 h2{
     display: flex;
     justify-content: center;
     font-weight: 800;
+    margin-bottom: 1rem;
 }
 
 .category{
     display: flex;
-    margin: 20px;
+    gap: 10px;
 }
 
 .categoryBtns{
@@ -78,31 +117,31 @@ h2{
 }
 
 .artBtn{
-    background: #C76BFF;
+    background: var(--art);
 }
 
 .geographyBtn{
-    background: #00ADEB;
+    background: var(--geography);
 }
 
 .historyBtn{
-    background: #FEEF8F;
+    background: var(--history);
 }
 
 .scienceBtn{
-    background: #71FF7F;
+    background: var(--science);
 }
 
 .entertainmentBtn{
-    background: #FE8FF3;
+    background: var(--entertainment);
 }
 
 .sportsBtn{
-    background: #FFBF84;
+    background: var(--sports);
 }
 
 .randomBtn{
-    background: #C4C4C4;
+    background: var(--random);
 }
 
 
