@@ -1,22 +1,54 @@
+    <template>
+    
+        <h2>Choose a Category</h2>
+        <section class="category">
+    
+            <div class="iconsLeft">
+                <img src="@/components/icons/art.png" alt="">
+                <img src="@/components/icons/history.png" alt="">
+                <img src="@/components/icons/entertainment.png" alt="">
+                <img src="@/components/icons/random.png" alt="">
+            </div>
+    
+            <div class="categoryBtns">
+                <button @click="setCategory('art')" id="art" class="artBtn">Art & Literature</button>
+                <button @click="setCategory('geography')" id="geography" class="geographyBtn">Geography</button>
+                <button @click="setCategory('history')" id="history" class="historyBtn">History</button>
+                <button @click="setCategory('science')" id="science" class="scienceBtn">Science & Nature</button>
+                <button @click="setCategory('entertainment')" id="entertainment" class="entertainmentBtn">Entertainment</button>
+                <button @click="setCategory('sports')" id="sports" class="sportsBtn">Sports & Leisure</button>
+                <button @click="setCategory('random')" id="random" class="randomBtn">Random</button>
+            </div>
+    
+            <div class="iconsRight">
+                <img src="@/components/icons/geography.png" alt="">
+                <img src="@/components/icons/science.png" alt="">
+                <img src="@/components/icons/sport.png" alt="">
+            </div>
+            
+        </section>
+        
+    </template>
 <script>
 
 
 export default {
     data() {
         return {
-            category: 'random',
+            category:'',
             art: false,
             history: false,
             science: false,
             sports: false,
             geography: false,
             entertainment: false,
-            random: true,
+            random: false,
         }
 
     },
     methods: {
-        setCategory(event, select) {
+        setCategory(select) {
+            console.log(select);
             select === 'art' ? this.art = true : this.art = false
             select === 'history' ? this.history = true : this.history = false
             select === 'science' ? this.science = true : this.science = false
@@ -24,47 +56,17 @@ export default {
             select === 'geography' ? this.geography = true : this.geography = false
             select === 'entertainment' ? this.entertainment = true : this.entertainment = false
             select === 'random' ? this.random = true : this.random = false
-            
-            this.category = event.target.id
-            console.log(this.category)
+        
+            // console.log(this.category)
             this.$router.push({ name:'Response', params:{ category: this.category, difficulty: this.difficulty } })
         }
+
+    
     }
 }
 
 </script>
 
-<template>
-
-    <h2>Choose a Category</h2>
-    <section class="category">
-
-        <div class="iconsLeft">
-            <img src="@/components/icons/art.png" alt="">
-            <img src="@/components/icons/history.png" alt="">
-            <img src="@/components/icons/entertainment.png" alt="">
-            <img src="@/components/icons/random.png" alt="">
-        </div>
-
-        <div class="categoryBtns">
-            <button @click=" (event) => setCategory(event)" id="art" class="artBtn">Art & Literature</button>
-            <button @click=" (event) => setCategory(event)" id="geography" class="geographyBtn">Geography</button>
-            <button @click=" (event) => setCategory(event)" id="history" class="historyBtn">History</button>
-            <button @click=" (event) => setCategory(event)" id="science" class="scienceBtn">Science & Nature</button>
-            <button @click=" (event) => setCategory(event)" id="entertainment" class="entertainmentBtn">Entertainment</button>
-            <button @click=" (event) => setCategory(event)" id="sports" class="sportsBtn">Sports & Leisure</button>
-            <button @click=" (event) => setCategory(event)" id="random" class="randomBtn">Random</button>
-        </div>
-
-        <div class="iconsRight">
-            <img src="@/components/icons/geography.png" alt="">
-            <img src="@/components/icons/science.png" alt="">
-            <img src="@/components/icons/sport.png" alt="">
-        </div>
-        
-    </section>
-    
-</template>
 
 <style>
 
