@@ -1,3 +1,15 @@
+        
+        <template>
+        
+                <img  class="responseIcon" src="src\components\icons\question.png" alt="">
+                <h1 v-html="result"></h1>
+        
+            <div id="randomAnswer" class="responseBtns">
+                <button @click="verifyAnswer()" v-for="answer in answers_list" :key="answer" v-html="answer" class="Question"></button>
+        
+            </div> 
+        
+        </template>
 <script>
 
 import axios from "axios";
@@ -47,21 +59,21 @@ export default {
         }) 
     },
 
+    methods: {
+        
+        verifyAnswer(){
+            if (this.answers_list[0] === this.correct_answer) {
+                this.result = "Correct!";
+            } else {
+                this.result = "Incorrect!";
+            }
+
+            console.log(verifyAnswer);
+        }
+    },
 };
 
 </script>
-
-<template>
-
-        <img  class="responseIcon" src="src\components\icons\question.png" alt="">
-        <h1 v-html="result"></h1>
-
-    <div id="randomAnswer" class="responseBtns">
-        <button v-for="answer in answers_list" :key="answer" v-html="answer" class="Question"></button>
-
-    </div> 
-
-</template>
 
 <style>
 
